@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uchkurgan International Debates</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f4f6f8;
+            color: #1a2744;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .match-info {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background: #1a2744;
+            color: white;
+        }
+
+        input {
+            width: 70px;
+            padding: 8px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .total {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        button {
+            display: block;
+            margin: 25px auto;
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #1a2744;
+            color: white;
+            border: none;
+            border-radius: 6px;
+        }
+
+        #result {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Uchkurgan International Debates</h1>
+
+    <div class="subtitle">
+        <strong>Judge Evaluation Sheet</strong>
+    </div>
+
+    <div class="match-info">
+        <p><strong>Match:</strong> Semifinal 1</p>
+        <p><strong>Motion:</strong> University education should be free for everyone.</p>
+        <p><strong>Team A:</strong> The Third Triumvirate — SUPPORT</p>
+        <p><strong>Team B:</strong> Invictious — OPPOSE</p>
+    </div>
+
+    <table>
+
+        <tr>
+            <th>Evaluation Criteria</th>
+            <th>The Third Triumvirate</th>
+            <th>Invictious</th>
+        </tr>
+
+        <tr>
+            <td>Round 1 — Opening Statement</td>
+            <td><input type="number" min="1" max="10" class="a"></td>
+            <td><input type="number" min="1" max="10" class="b"></td>
+        </tr>
+
+        <tr>
+            <td>Round 2 — Main Rebuttal</td>
+            <td><input type="number" min="1" max="10" class="a"></td>
+            <td><input type="number" min="1" max="10" class="b"></td>
+        </tr>
+
+        <tr>
+            <td>Round 3 — Direct Response</td>
+            <td><input type="number" min="1" max="10" class="a"></td>
+            <td><input type="number" min="1" max="10" class="b"></td>
+        </tr>
+
+        <tr>
+            <td>Round 4 — Cross-Questioning</td>
+            <td><input type="number" min="1" max="10" class="a"></td>
+            <td><input type="number" min="1" max="10" class="b"></td>
+        </tr>
+
+        <tr>
+            <td>Round 5 — Final Statement</td>
+            <td><input type="number" min="1" max="10" class="a"></td>
+            <td><input type="number" min="1" max="10" class="b"></td>
+        </tr>
+
+        <tr>
+            <td>Argumentation & Logic</td>
+            <td><input type="number" min="1" max="10" class="a"></td>
+            <td><input type="number" min="1" max="10" class="b"></td>
+        </tr>
+
+        <tr>
+            <td>Research & Evidence</td>
+            <td><input type="number" min="1" max="10" class="a"></td>
+            <td><input type="number" min="1" max="10" class="b"></td>
+        </tr>
+
+        <tr>
+            <td>Delivery & Communication</td>
+            <td><input type="number" min="1" max="10" class="a"></td>
+            <td><input type="number" min="1" max="10" class="b"></td>
+        </tr>
+
+        <tr>
+            <td>Teamwork & Strategy</td>
+            <td><input type="number" min="1" max="10" class="a"></td>
+            <td><input type="number" min="1" max="10" class="b"></td>
+        </tr>
+
+        <tr>
+            <td>Consistency & Relevance</td>
+            <td><input type="number" min="1" max="10" class="a"></td>
+            <td><input type="number" min="1" max="10" class="b"></td>
+        </tr>
+
+        <tr class="total">
+            <td>TOTAL / 100</td>
+            <td id="totalA">0</td>
+            <td id="totalB">0</td>
+        </tr>
+
+    </table>
+
+    <button onclick="calculateScores()">Calculate Scores</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateScores() {
+
+            const scoresA = document.querySelectorAll(".a");
+            const scoresB = document.querySelectorAll(".b");
+
+            let totalA = 0;
+            let totalB = 0;
+
+            scoresA.forEach(input => {
+                totalA += Number(input.value) || 0;
+            });
+
+            scoresB.forEach(input => {
+                totalB += Number(input.value) || 0;
+            });
+
+            document.getElementById("totalA").textContent = totalA + " / 100";
+            document.getElementById("totalB").textContent = totalB + " / 100";
+
+            if (totalA > totalB) {
+                document.getElementById("result").textContent =
+                    "Winner: The Third Triumvirate";
+            } 
+            else if (totalB > totalA) {
+                document.getElementById("result").textContent =
+                    "Winner: Invictious";
+            } 
+            else {
+                document.getElementById("result").textContent =
+                    "Result: Tie";
+            }
+        }
+    </script>
+
+</body>
+</html>
